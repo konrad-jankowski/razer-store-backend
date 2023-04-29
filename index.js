@@ -21,28 +21,29 @@ mongoose.connect(
   "mongodb+srv://blackweeeed:Mm4ktgVVr30SK18X@cluster0.qx1myqy.mongodb.net/test"
 );
 // mongoose.connect(process.env.MONGO_URL);
-
-/* const newDocument = new Mouse({
-  name: "Razer Mouse Bungee V3",
-  line: "mouse bungee",
-  model: "mouse bungee v3",
+/* 
+const newDocument = new Mouse({
+  name: "Razer BlackWidow V4 Pro ESL Edition",
+  line: "blackwidow",
+  model: "blackwidow v4",
   image:
-    "https://assets3.razerzone.com/nLQsh-gbVYjI883qfAqrw7X0_OI=/300x300/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhe2%2Fh93%2F9094272483358%2FMouse%20Bungee%20V3%20-%20500x500.png",
+    "https://assets3.razerzone.com/f_2bKVQ203wpJz8F-gzw8TkjuyI=/500x500/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhcf%2Fh0e%2F9479906000926%2Fbw-v4-pro-500x500.png",
   images: [
-    "https://assets3.razerzone.com/1V7QwK-DYqU_lVm3mFzLuiDk41g=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhdf%2Fh95%2F9094274514974%2Fmouse-bungee-v3-1500x1000-5-20201022.jpg",
-    "https://assets3.razerzone.com/K8u_wpSJk7ecCszl9WEN7Z_88Ds=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh85%2Fh98%2F9094274482206%2Fmouse-bungee-v3-1500x1000-6-20201022.jpg",
-    "https://assets3.razerzone.com/A00Dw0Zy08Y_HNOf4me-9RV5faI=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh76%2Fh92%2F9094274613278%2Fmouse-bungee-v3-1500x1000-7-20201022.jpg",
+    "https://assets3.razerzone.com/dlZMD3KWQ5AhP3C1v6Fi4pe4rw0=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh74%2Fh37%2F9477488148510%2F230216-bw-v4-pro-1500x1000-1.jpg",
+    "https://assets3.razerzone.com/dPp5HqughEV64GTDk8rFf2Vozms=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh0a%2Fh37%2F9477488181278%2F230216-bw-v4-pro-1500x1000-2.jpg",
+    "https://assets3.razerzone.com/-bA8X-KMwDK7nyyONuf8afhd4ps=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhcc%2Fh37%2F9477488115742%2F230216-bw-v4-pro-1500x1000-3.jpg",
+    "https://assets3.razerzone.com/S8G6AHaWve7Tsh4NOLc-qMuqZ9U=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhc9%2Fh3a%2F9477488050206%2F230216-bw-v4-pro-1500x1000-4.jpg",
   ],
-  color: "Standard",
-  description: "Ergonomic MMO Gaming Mouse for Left-Handed Users",
+  color: "Green Switch",
+  description: "Mechanical Gaming Keyboard with Razer Chroma™ RGB",
   descriptions: [
-    "Drag-free cord control",
-    "Rust-resistant spring arm",
-    "Weighted base for stability",
+    "Razer™ Green Mechanical Switches (Clicky)",
+    "Immersive Underglow and Per-Key Lighting",
+    "Razer™ Command Dial and 8 Dedicated Macro Keys",
   ],
-  category: "Accessories",
-  price: 39.99,
-  new: false,
+  category: "Keyboards",
+  price: 229.99,
+  new: true,
   exclusive: false,
 });
 
@@ -66,6 +67,22 @@ app.get("/getData", async (req, res) => {
 app.get("/mice", async (req, res) => {
   try {
     const data = await Mouse.find({ category: "Mice" });
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+app.get("/audio", async (req, res) => {
+  try {
+    const data = await Mouse.find({ category: "Audio" });
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+app.get("/keyboards", async (req, res) => {
+  try {
+    const data = await Mouse.find({ category: "Keyboards" });
     res.json(data);
   } catch (err) {
     res.status(500).json({ message: err.message });
