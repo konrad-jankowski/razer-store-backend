@@ -102,4 +102,16 @@ app.get("/getData/:id", async (req, res) => {
   res.json(await Mouse.findById(id));
 });
 
+app.get("/products", async (req, res) => {
+  const query = req.query.q;
+  const products = await Mouse.find({
+    $or: [
+      { name: { $regex: query, $options: "i" } },
+      { description: { $regex: query, $options: "i" } },
+    ],
+  });
+  console.log(query);
+  res.json(products);
+});
+
 app.listen(4000);
