@@ -23,27 +23,27 @@ mongoose.connect(
 // mongoose.connect(process.env.MONGO_URL);
 /* 
 const newDocument = new Mouse({
-  name: "Razer BlackWidow V4 Pro ESL Edition",
-  line: "blackwidow",
-  model: "blackwidow v4",
+  name: "Razer Iskur",
+  line: "iskur",
+  model: "iskur",
   image:
-    "https://assets3.razerzone.com/f_2bKVQ203wpJz8F-gzw8TkjuyI=/500x500/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhcf%2Fh0e%2F9479906000926%2Fbw-v4-pro-500x500.png",
+    "https://assets3.razerzone.com/y453D_RMc62OvR6krHZwpN0WBqo=/500x500/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh49%2Fh92%2F9151223103518%2Fiskur-black-500x500.png",
   images: [
-    "https://assets3.razerzone.com/dlZMD3KWQ5AhP3C1v6Fi4pe4rw0=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh74%2Fh37%2F9477488148510%2F230216-bw-v4-pro-1500x1000-1.jpg",
-    "https://assets3.razerzone.com/dPp5HqughEV64GTDk8rFf2Vozms=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh0a%2Fh37%2F9477488181278%2F230216-bw-v4-pro-1500x1000-2.jpg",
-    "https://assets3.razerzone.com/-bA8X-KMwDK7nyyONuf8afhd4ps=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhcc%2Fh37%2F9477488115742%2F230216-bw-v4-pro-1500x1000-3.jpg",
-    "https://assets3.razerzone.com/S8G6AHaWve7Tsh4NOLc-qMuqZ9U=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhc9%2Fh3a%2F9477488050206%2F230216-bw-v4-pro-1500x1000-4.jpg",
+    "https://assets3.razerzone.com/Jrd00_GtpNo3aGJJmxd-n0M2tBc=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh45%2Fh7a%2F9198275526686%2Fiskurblack-gallery-1500x1000-rsl5-1.jpg",
+    "https://assets3.razerzone.com/3VvDifHliiskCvUKEjO6O1zjeow=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh0d%2Fh70%2F9198275821598%2Fiskurblack-gallery-1500x1000-rsl5-2.jpg",
+    "https://assets3.razerzone.com/zu7_aD_sMtRz3HSeRLkdipsju0s=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh54%2Fh80%2F9198275395614%2Fiskurblack-gallery-1500x1000-rsl5-3.jpg",
+    "https://assets3.razerzone.com/bhDGuPs84s3u_7kIoHvt53VGg90=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhad%2Fh7d%2F9198275428382%2Fiskurblack-gallery-1500x1000-rsl5-4.jpg",
   ],
-  color: "Green Switch",
-  description: "Mechanical Gaming Keyboard with Razer Chroma™ RGB",
+  color: "Black",
+  description: "Gaming Chair with Built-in Lumbar Support",
   descriptions: [
-    "Razer™ Green Mechanical Switches (Clicky)",
-    "Immersive Underglow and Per-Key Lighting",
-    "Razer™ Command Dial and 8 Dedicated Macro Keys",
+    "Fully sculpted lumbar support ",
+    "Multi-layered synthetic leather ",
+    "High density foam cushions",
   ],
-  category: "Keyboards",
-  price: 229.99,
-  new: true,
+  category: "Chairs",
+  price: 449.0,
+  new: false,
   exclusive: false,
 });
 
@@ -88,6 +88,14 @@ app.get("/keyboards", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+app.get("/chairs", async (req, res) => {
+  try {
+    const data = await Mouse.find({ category: "Chairs" });
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 app.get("/accessories", async (req, res) => {
   try {
     const data = await Mouse.find({ category: "Accessories" });
@@ -108,9 +116,10 @@ app.get("/products", async (req, res) => {
     $or: [
       { name: { $regex: query, $options: "i" } },
       { description: { $regex: query, $options: "i" } },
+      { category: { $regex: query, $options: "i" } },
+      { color: { $regex: query, $options: "i" } },
     ],
   });
-  console.log(query);
   res.json(products);
 });
 
