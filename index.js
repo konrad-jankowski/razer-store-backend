@@ -6,12 +6,19 @@ const Mouse = require("./models/Mouse");
 require("dotenv").config();
 const app = express();
 
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://razer-store-tbxt152i6-blackweeed.vercel.app",
-  })
-);
+const corsOptions = {
+  credentials: true,
+  origin: function (origin, callback) {
+    const allowedOrigins = ["https://razer-store-ten.vercel.app", "http://localhost:5173"];
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Witaj na moim serwerze!");
