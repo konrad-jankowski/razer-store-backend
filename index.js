@@ -123,4 +123,6 @@ app.get("/products", async (req, res) => {
   res.json(products);
 });
 
-app.listen(4000);
+app.listen(4000, () => {
+  console.log(`Serwer działa na porcie 4000`);
+});
